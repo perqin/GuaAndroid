@@ -13,12 +13,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.perqin.gua.R;
-import com.perqin.gua.data.models.PollingModel;
 import com.perqin.gua.data.repositories.AccountsRepository;
 import com.perqin.gua.data.repositories.PollingsRepository;
 import com.perqin.gua.modules.auth.AuthActivity;
 
-import rx.functions.Action1;
+import retrofit2.adapter.rxjava.HttpException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ScoresRecyclerAdapter mAdapter;
@@ -31,18 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void checkPollingState(String studentId) {
         setLoading(true);
-        PollingsRepository.getInstance().getPolling(studentId).subscribe(new Action1<PollingModel>() {
-            @Override
-            public void call(PollingModel pollingModel) {
-                setLoading(false);
-
-                setPollingStarted(pollingModel.isStarted());
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                setLoading(false);
-
+        PollingsRepository.getInstance().getPolling(studentId).subscribe(pollingModel -> {
+            setLoading(false);
+            setPollingStarted(true);
+        }, throwable -> {
+            setLoading(false);
+            setPollingStarted(false);
+            if (!(throwable instanceof HttpException && ((HttpException) throwable).code() == 404)) {
                 Toast.makeText(MainActivity.this, "Exception: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -51,20 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void stopPolling(String studentId) {
         setLoading(true);
         // Stop it
-        PollingsRepository.getInstance().stopPolling(studentId).subscribe(new Action1<Void>() {
-            @Override
-            public void call(Void aVoid) {
-                setLoading(false);
-
+        PollingsRepository.getInstance().stopPolling(studentId).subscribe(aVoid -> {
+            setLoading(false);
+            setPollingStarted(false);
+        }, throwable -> {
+            setLoading(false);
+            // Set to stopped if this polling not found
+            if (throwable instanceof HttpException && ((HttpException) throwable).code() == 404) {
                 setPollingStarted(false);
             }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                setLoading(false);
-
-                Toast.makeText(MainActivity.this, "Exception: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            Toast.makeText(MainActivity.this, "Exception: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
         });
     }
 

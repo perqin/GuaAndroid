@@ -1,9 +1,9 @@
 package com.perqin.gua.data.fcm;
 
-import android.util.Log;
-
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.perqin.gua.App;
+import com.perqin.gua.data.repositories.AccountsRepository;
 
 /**
  * Author   : perqin
@@ -16,7 +16,6 @@ public class GuaFirebaseInstanceIdService extends FirebaseInstanceIdService {
     @Override
     public void onTokenRefresh() {
         String token = FirebaseInstanceId.getInstance().getToken();
-        Log.i(TAG, "onTokenRefresh: Refreshed token : " + token);
-        // TODO: Send it to server
+        AccountsRepository.getInstance(App.context).saveClientToken(token);
     }
 }

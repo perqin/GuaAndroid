@@ -2,7 +2,7 @@ package com.perqin.gua.data.repositories;
 
 import com.perqin.gua.data.models.PollingModel;
 import com.perqin.gua.data.retrofit.PollingService;
-import com.perqin.gua.data.retrofit.PostPollingsReq;
+import com.perqin.gua.data.retrofit.PostPollingReq;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -37,8 +37,11 @@ public class PollingsRepository implements IPollingsRepository {
     }
 
     @Override
-    public Observable<PollingModel> startPolling(String studentId, String cookie) {
-        return mService.startPolling(studentId, new PostPollingsReq(cookie))
+    public Observable<PollingModel> startPolling(String studentId, String cookie, String clientToken) {
+        PostPollingReq req = new PostPollingReq();
+        req.cookie = cookie;
+        req.clientToken = clientToken;
+        return mService.startPolling(studentId, req)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

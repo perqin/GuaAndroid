@@ -9,12 +9,10 @@ import rx.Observable;
  * Date     : 17-2-11
  */
 
-public interface IPollingsRepository {
-    Observable<PollingModel> startPolling(String studentId, String cookies);
+interface IPollingsRepository {
+    Observable<PollingModel> startPolling(String studentId, String cookie, String clientToken);
 
     Observable<Void> stopPolling(String studentId);
-
-//    Observable<List<PollingModel>> getPollings(String studentId);
 
     Observable<PollingModel> getPolling(String studentId);
 }

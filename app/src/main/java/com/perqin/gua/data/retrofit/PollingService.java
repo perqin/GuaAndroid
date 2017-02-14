@@ -21,7 +21,7 @@ public interface PollingService {
     Observable<PollingModel> getPolling(@Path("student_id") String studentId);
 
     @POST("pollings/{student_id}")
-    Observable<PollingModel> startPolling(@Path("student_id") String studentId, @Body PostPollingsReq req);
+    Observable<PollingModel> startPolling(@Path("student_id") String studentId, @Body PostPollingReq req);
 
     @DELETE("pollings/{student_id}")
     Observable<Void> stopPolling(@Path("student_id") String studentId);

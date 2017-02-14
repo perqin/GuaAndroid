@@ -7,7 +7,7 @@ package com.perqin.gua.data.models;
 
 public class PollingModel {
     private String studentId;
-    private boolean started;
+    private String clientToken;
 
     public String getStudentId() {
         return studentId;
@@ -17,11 +17,11 @@ public class PollingModel {
         this.studentId = studentId;
     }
 
-    public boolean isStarted() {
-        return started;
+    public String getClientToken() {
+        return clientToken;
     }
 
-    public void setStarted(boolean started) {
-        this.started = started;
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
     }
 }
