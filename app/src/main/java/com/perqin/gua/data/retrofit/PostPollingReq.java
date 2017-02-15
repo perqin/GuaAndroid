@@ -7,5 +7,5 @@ package com.perqin.gua.data.retrofit;
 
 public class PostPollingReq {
     public String cookie;
-    public String clientToken;
+    public String client_token;
 }

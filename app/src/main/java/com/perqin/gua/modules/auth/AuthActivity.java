@@ -25,7 +25,7 @@ public class AuthActivity extends AppCompatActivity {
         String cookie = CookieManager.getInstance().getCookie(WJW_URL);
         String studentId = grepStudentId(cookie);
         String clientToken = AccountsRepository.getInstance(this).getClientToken();
-        if (cookie.isEmpty() || studentId.isEmpty()) {
+        if (cookie.isEmpty() || studentId.isEmpty() || clientToken.isEmpty()) {
             Toast.makeText(this, R.string.fail_to_get_cookies_or_student_id, Toast.LENGTH_SHORT).show();
         } else {
             AccountsRepository.getInstance(this).saveStudentId(studentId);

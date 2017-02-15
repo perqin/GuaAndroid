@@ -4,4 +4,6 @@
     <string name="student_id">Student ID</string>
     <string name="fail_to_get_cookies_or_student_id">Fail to get cookies or student ID</string>
     <string name="start_polling">Start polling…</string>
+    <string name="you_got_PH_on_PH">You got %1$s on %2$s!</string>
+    <string name="new_score_coming_out">New score coming out</string>
 </resources>

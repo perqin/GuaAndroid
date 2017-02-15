@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.perqin.gua.R;
 import com.perqin.gua.data.repositories.AccountsRepository;
 import com.perqin.gua.data.repositories.PollingsRepository;
+import com.perqin.gua.data.repositories.ScoresRepository;
 import com.perqin.gua.modules.auth.AuthActivity;
 
 import retrofit2.adapter.rxjava.HttpException;
@@ -100,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
 
         String studentId = AccountsRepository.getInstance(this).getStudentId();
+        if (!studentId.isEmpty()) {
+            mAdapter.reloadScores(ScoresRepository.getInstance(this).getScores(studentId));
+        }
         if (!studentId.isEmpty() && !mLoading) {
             checkPollingState(studentId);
         }

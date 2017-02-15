@@ -40,7 +40,7 @@ public class PollingsRepository implements IPollingsRepository {
     public Observable<PollingModel> startPolling(String studentId, String cookie, String clientToken) {
         PostPollingReq req = new PostPollingReq();
         req.cookie = cookie;
-        req.clientToken = clientToken;
+        req.client_token = clientToken;
         return mService.startPolling(studentId, req)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

@@ -15,7 +15,7 @@ import rx.Observable;
  */
 
 public interface PollingService {
-    String BASE_URL = "https://guaperqin.localtunnel.me/api/";
+    String BASE_URL = "http://gua.perqin.com/api/";
 
     @GET("pollings/{student_id}")
     Observable<PollingModel> getPolling(@Path("student_id") String studentId);
