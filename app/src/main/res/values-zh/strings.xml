@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">挂</string>
+    <string name="decline">拒绝</string>
+    <string name="accept">接受</string>
+    <string name="action_settings">设置</string>
+    <string name="agreement">声明</string>
+    <string name="agreement_content">
+        <![CDATA[
+        感谢使用我的应用：挂！\n
+        \n
+        由于中山大学的官方教务系统（包括现已被由官方管理的微教务wjw.sysu.edu.cn）使用了极验滑动验证码阻挡机器人
+        访问，编写解析HTML和发送HTTP请求来访问教务系统的客户端十分困难。偶然之间，我发现Android的WebView控件可
+        以提取cookie，而这也是本应用的实现机制。\n
+        \n
+        要启用新成绩的推送，点击右下角的“播放”图标FAB，并在打开的WebView中登录你的微教务。这之后，点击顶部
+        Toolbar的“打勾”按钮，然后紧张地上车吧！\n
+        \n
+        为了在保持cookie存活的同时减少耗电量，你的cookie会被上传到应用服务器，服务器会代表你发送请求获取成绩，
+        每隔大约25分钟请求一次。服务器不会利用你的cookie做任何除获取你的成绩以外的操作。\n
+        \n
+        继续使用本应用意味着你已经了解以上声明并愿意独自承担使用本应用可能带来的任何风险。
+        ]]>
+    </string>
+    <string name="new_score_coming_out">新科目出成绩了</string>
+    <string name="fail_to_get_cookies_or_student_id">无法获取cookie或学号</string>
+    <string name="start_polling">开始轮询成绩…</string>
+    <string name="you_got_PH_on_PH">你在课程 %2$s 的成绩是 %2$s！</string>
+</resources>
