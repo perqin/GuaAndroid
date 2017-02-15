@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 public class AccountsRepository {
     private static final String PK_APP_STUDENT_ID = "APP_STUDENT_ID";
     private static final String PK_APP_CLIENT_TOKEN = "APP_CLIENT_TOKEN";
+    private static final String PK_APP_ACCEPT_CLAIM = "APP_ACCEPT_CLAIM";
 
     private static AccountsRepository sInstance;
 
@@ -44,5 +45,14 @@ public class AccountsRepository {
     public void saveClientToken(String token) {
         mSharedPreferences.edit()
                 .putString(PK_APP_CLIENT_TOKEN, token).apply();
+    }
+
+    public void acceptClaim() {
+        mSharedPreferences.edit()
+                .putBoolean(PK_APP_ACCEPT_CLAIM, true).apply();
+    }
+
+    public boolean isAcceptingClaim() {
+        return mSharedPreferences.getBoolean(PK_APP_ACCEPT_CLAIM, false);
     }
 }

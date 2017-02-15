@@ -6,4 +6,24 @@
     <string name="start_polling">Start polling…</string>
     <string name="you_got_PH_on_PH">You got %1$s on %2$s!</string>
     <string name="new_score_coming_out">New score coming out</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="agreement">Agreement</string>
+    <string name="agreement_content">
+        <![CDATA[
+        Thanks for using my app Gua!\n\n
+        Since the official Academic Affairs System of Sun Yat-sen University (as well as
+        wjw.sysu.edu.cn, which is official now) uses geetest to prevent bot, it is difficult to
+        create any client by parsing HTML and making HTTP requests. By accident, I found that cookie
+        can be retrieved from WebView widget on Android. This is how this app works.\n\n
+        To get your new score push message, click the "Play" FAB at right bottom corner, and login
+        to wjw.sysu.edu.cn successfully. After that, click the Tick on the Toolbar above and you are
+        ready to be anxious!\n\n
+        To keep the cookie alive while reducing battery drain, your cookie is uploaded to the app
+        server and the server requests for your scores on behalf of you, once 25 minutes. The server
+        will never do any things other than getting your scores data.\n\n
+        To use this app, it means that you\'ve learn about the claim above and use it with you own
+        risk.
+        ]]>
+    </string>
 </resources>

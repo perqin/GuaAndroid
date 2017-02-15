@@ -17,10 +17,13 @@ import com.perqin.gua.data.repositories.AccountsRepository;
 import com.perqin.gua.data.repositories.PollingsRepository;
 import com.perqin.gua.data.repositories.ScoresRepository;
 import com.perqin.gua.modules.auth.AuthActivity;
+import com.perqin.gua.modules.claim.ClaimActivity;
 
 import retrofit2.adapter.rxjava.HttpException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final int REQUEST_ACCEPT_CLAIM = 1;
+
     private ScoresRecyclerAdapter mAdapter;
     private boolean mLoading;
     private boolean mPollingStarted;
@@ -84,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        if (!AccountsRepository.getInstance(this).isAcceptingClaim()) {
+            startActivityForResult(new Intent(this, ClaimActivity.class), REQUEST_ACCEPT_CLAIM);
+        }
+
         mAdapter = new ScoresRecyclerAdapter();
         mLoading = false;
 
@@ -125,6 +132,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_ACCEPT_CLAIM) {
+            if (!AccountsRepository.getInstance(this).isAcceptingClaim()) {
+                finish();
+            }
+        }
     }
 
     @Override

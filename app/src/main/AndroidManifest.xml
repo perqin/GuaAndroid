@@ -29,11 +29,15 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".data.fcm.GuaFirebaseMessagingService" >
+        <service android:name=".data.fcm.GuaFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".modules.claim.ClaimActivity"
+            android:label="@string/agreement" />
     </application>
+
 </manifest>
