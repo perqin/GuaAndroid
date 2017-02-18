@@ -4,9 +4,20 @@
     <string name="fail_to_get_cookies_or_student_id">Fail to get cookies or student ID</string>
     <string name="start_polling">Start polling…</string>
     <string name="you_got_PH_on_PH">You got %1$s on %2$s!</string>
+    <string name="your_score_on_PH_is_updated_to_PH">Your score on %1$s is updated to %2$s!</string>
+    <string name="your_score_on_PH_is_removed">Your score on %1$s is removed!</string>
     <string name="new_score_coming_out">New score coming out</string>
+    <string name="score_gets_update">Score gets update</string>
+    <string name="the_teacher_changes_his_or_her_mind">The teacher changes his or her mind</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
+    <string name="cancel">Cancel</string>
+    <string name="starting_polling">Starting polling…</string>
+    <string name="valid_google_play_service_is_not_available_on_your_device">Valid Google Play Service is not available on your device</string>
+    <string name="permissions_are_required_by_jpush_sdk">Permissions are required by JPush SDK</string>
+    <string name="permissions_are_required_by_mipush_sdk">Permissions are required by MiPush SDK</string>
+    <string name="loading_now_please_wait">Loading now. Please wait.</string>
+    <string name="polling_options">Polling options</string>
     <string name="agreement">Agreement</string>
     <string name="agreement_content">
         <![CDATA[
@@ -29,4 +40,13 @@
         risk.
         ]]>
     </string>
+
+    <string name="fcm">fcm</string>
+    <string name="jpush">jpush</string>
+    <string name="mipush">mipush</string>
+    <string name="push_services">Push services</string>
+    <string-array name="push_services">
+        <item>@string/fcm</item>
+        <item>@string/mipush</item>
+    </string-array>
 </resources>

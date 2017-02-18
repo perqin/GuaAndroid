@@ -3,6 +3,7 @@ package com.perqin.gua.data.repositories;
 import android.content.Context;
 
 import com.perqin.gua.data.models.ScoreModel;
+import com.perqin.gua.data.models.SyncModel;
 import com.perqin.gua.data.sqlite.SQLiteHelper;
 
 import java.util.List;
@@ -32,7 +33,9 @@ public class ScoresRepository {
         return mHelper.getScores(studentId);
     }
 
-    public void saveNewScore(ScoreModel scoreModel) {
-        mHelper.createScore(scoreModel);
+    public void syncScores(SyncModel syncModel) {
+        for (ScoreModel scoreModel : syncModel.createdScores) mHelper.createScore(scoreModel);
+        for (ScoreModel scoreModel : syncModel.updatedScores) mHelper.updateScore(scoreModel);
+        for (ScoreModel scoreModel : syncModel.removedScores) mHelper.removeScore(scoreModel);
     }
 }

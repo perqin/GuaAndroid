@@ -13,6 +13,8 @@ public class AccountsRepository {
     private static final String PK_APP_STUDENT_ID = "APP_STUDENT_ID";
     private static final String PK_APP_CLIENT_TOKEN = "APP_CLIENT_TOKEN";
     private static final String PK_APP_ACCEPT_CLAIM = "APP_ACCEPT_CLAIM";
+    private static final String PK_APP_COOKIE = "APP_COOKIE";
+    private static final String PK_APP_PUSH_SERVICE = "APP_PUSH_SERVICE";
 
     private static AccountsRepository sInstance;
 
@@ -54,5 +56,19 @@ public class AccountsRepository {
 
     public boolean isAcceptingClaim() {
         return mSharedPreferences.getBoolean(PK_APP_ACCEPT_CLAIM, false);
+    }
+
+    public void saveCookie(String cookie) {
+        mSharedPreferences.edit()
+                .putString(PK_APP_COOKIE, cookie).apply();
+    }
+
+    public void savePushService(String service) {
+        mSharedPreferences.edit()
+                .putString(PK_APP_PUSH_SERVICE, service).apply();
+    }
+
+    public String getCookie() {
+        return mSharedPreferences.getString(PK_APP_COOKIE, "");
     }
 }

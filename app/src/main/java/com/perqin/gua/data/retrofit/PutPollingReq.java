@@ -2,11 +2,10 @@ package com.perqin.gua.data.retrofit;
 
 /**
  * Author   : perqin
- * Date     : 17-2-12
+ * Date     : 17-2-18
  */
 
-public class PostPollingReq {
-    public String cookie;
+class PutPollingReq {
     public String service;
     public String clientToken;
 }

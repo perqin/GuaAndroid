@@ -37,25 +37,26 @@ public class PollingsRepository implements IPollingsRepository {
     }
 
     @Override
-    public Observable<PollingModel> startPolling(String studentId, String cookie, String clientToken) {
+    public Observable<PollingModel> startPolling(String studentId, String cookie, String service, String clientToken) {
         PostPollingReq req = new PostPollingReq();
         req.cookie = cookie;
-        req.client_token = clientToken;
+        req.service = service;
+        req.clientToken = clientToken;
         return mService.startPolling(studentId, req)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public Observable<Void> stopPolling(String studentId) {
-        return mService.stopPolling(studentId)
+    public Observable<Void> stopPolling(String studentId, String cookie) {
+        return mService.stopPolling(studentId, cookie)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public Observable<PollingModel> getPolling(String studentId) {
-        return mService.getPolling(studentId)
+    public Observable<PollingModel> getPolling(String studentId, String cookie) {
+        return mService.getPolling(studentId, cookie)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

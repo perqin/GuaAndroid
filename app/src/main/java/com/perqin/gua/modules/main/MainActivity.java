@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void checkPollingState(String studentId) {
         setLoading(true);
-        PollingsRepository.getInstance().getPolling(studentId).subscribe(pollingModel -> {
+        String cookie = AccountsRepository.getInstance(this).getCookie();
+        PollingsRepository.getInstance().getPolling(studentId, cookie).subscribe(pollingModel -> {
             setLoading(false);
             setPollingStarted(true);
         }, throwable -> {
@@ -49,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void stopPolling(String studentId) {
         setLoading(true);
         // Stop it
-        PollingsRepository.getInstance().stopPolling(studentId).subscribe(aVoid -> {
+        String cookie = AccountsRepository.getInstance(this).getCookie();
+        PollingsRepository.getInstance().stopPolling(studentId, cookie).subscribe(aVoid -> {
             setLoading(false);
             setPollingStarted(false);
         }, throwable -> {
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setLoading(boolean loading) {
         mLoading = loading;
-        // TODO: Add animation
+        if (loading) mFab.setImageResource(R.drawable.ic_hourglass_full_black_24dp);
     }
 
     private void setPollingStarted(boolean started) {
@@ -147,7 +149,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.fab) {
-            if (mLoading) return;
+            if (mLoading) {
+                Toast.makeText(this, R.string.loading_now_please_wait, Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             if (mPollingStarted) {
                 stopPolling(AccountsRepository.getInstance(this).getStudentId());

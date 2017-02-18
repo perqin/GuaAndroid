@@ -62,4 +62,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(SQLiteContract.Score.QUERY_DROP_TABLE);
         onCreate(db);
     }
+
+    public void updateScore(ScoreModel scoreModel) {
+        SQLiteDatabase database = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLiteContract.Score.COL_SCORE, scoreModel.getScore());
+        database.update(SQLiteContract.Score.TABLE, contentValues, String.format("%s = ?", SQLiteContract.Score.COL_COURSE_ID), new String[]{ scoreModel.getCourseId() });
+    }
+
+    public void removeScore(ScoreModel scoreModel) {
+        SQLiteDatabase database = getWritableDatabase();
+        database.delete(SQLiteContract.Score.TABLE, String.format("%s = ?", SQLiteContract.Score.COL_COURSE_ID), new String[]{ scoreModel.getCourseId() });
+    }
 }
